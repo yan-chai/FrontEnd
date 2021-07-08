@@ -1,0 +1,32 @@
+body {
+    background-color: white;
+}
+
+.intropic {
+    height: 100%;
+    width: 30%;
+}
+
+.content {
+    float: right;
+    margin-right: 10%;
+    margin-top: 1%;
+    width: 50%;
+}
+
+.header {
+    margin-left: 60%;
+}
+
+.header a{
+    font-weight: bold;
+}
+
+.auth {
+    margin-top: 20%;
+    margin-left: 15%;
+}
+
+.auth Button {
+    margin-left: 10%;
+}
