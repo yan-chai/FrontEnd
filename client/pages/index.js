@@ -2,9 +2,10 @@ import { Row, Col, Button, Menu } from 'antd';
 import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
 import "../node_modules/antd/dist/antd.css"
 //import { useState } from 'react';
+import React from "react" 
 import Router from 'next/router';
 
-
+//http://localhost:3000
 
 export default function Home() {
 
@@ -20,6 +21,7 @@ export default function Home() {
   function handleClick(e) {
     //console.log('click ', e.key);
     //setClick(e.key);
+    
     Router.push('/'+e.key);
   };
 
@@ -28,7 +30,7 @@ export default function Home() {
       <Row  className="indexHeader">
         <Col span={4} className="logo"><img className="img" src="../city.png"></img></Col>
         <Col span={8}/>
-        <Col span={12} className="banner">
+        <Col span={10} className="banner">
         <Menu onClick={handleClick} mode="horizontal">
           <Menu.Item key="about" icon={<MailOutlined />}>
             About us

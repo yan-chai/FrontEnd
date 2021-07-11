@@ -1,14 +1,11 @@
 .indexHeader {
     background-color: white;
+    height: 5%;
 }
 
 .logo {
-  text-align: center;
+  margin-left: 5%;
   margin-top: 1%;
-}
-
-.img {
-  filter: brightness(100);
 }
 
 .banner {

@@ -1,5 +1,5 @@
 import {Button, Divider, Form, Input,Checkbox} from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import React from "react" 
 React.useLayoutEffect = React.useEffect 
 
@@ -17,8 +17,8 @@ function Login() {
         <div>
             <img src='/tmp.PNG' className='intropic' />
             <div className='content'>
-                <div className='header'>Do not have account yet? <a href='/register'>Sign Up</a></div>
-                <div className='auth'><Button size='large'>Sign in With Google</Button><Button size='large'>Sign in With Twitter</Button></div>
+                <div className='header'>Already have an Account? <a href='/register'>Sign in</a></div>
+                <div className='auth'><Button size='large'>Sign up With Google</Button><Button size='large'>Sign up With Twitter</Button></div>
                 <Divider plain>Or</Divider>
                 <div className='form'>
                 <Form
@@ -28,12 +28,19 @@ function Login() {
                   onFinish={onFinish}
                   onFinishFailed={onFinishFailed}
                 >
-                  <span className='inline'>Email</span>
+                  <span className='inline'>Name</span>
                   <Form.Item
                     name="username"
                     rules={[{ required: true, message: 'Please input your Username!' }]}
                   >
                     <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
+                  </Form.Item>
+                  <span className='inline'>Email</span>
+                  <Form.Item
+                    name="email"
+                    rules={[{ required: true, message: 'Please input your Email!' }]}
+                  >
+                    <Input prefix={<MailOutlined className="site-form-item-icon" />} placeholder="Email" />
                   </Form.Item>
                   <span className='inline'>Password</span>
                   <Form.Item
@@ -47,20 +54,16 @@ function Login() {
                     />
                   </Form.Item>
                   <Form.Item>
-                    <Form.Item name="remember" valuePropName="checked" noStyle>
-                      <Checkbox>Remember me</Checkbox>
-                    </Form.Item>
-
-                    <a className="login-form-forgot" href="">
-                      Forgot password
-                    </a>
+                    <span className="login-form-forgot" href="">
+                      Use 8 Character or More
+                    </span>
                   </Form.Item>
 
                   <Form.Item>
-                    <Button type="primary" htmlType="submit" className="login-form-button">
-                      Log in
+                    <Button type="primary" htmlType="submit" className="login-form-button" size='large'>
+                      Create New Account
                     </Button>
-                    Or <a href="">register now!</a>
+                    Or <a href="/">Back to Home Page</a>
                   </Form.Item>
                 </Form>
                 </div>
