@@ -60,11 +60,11 @@ const Home = () => {
 
     return (
         <div>
-            <img className="img" src="../city.png"></img>
+            <img className="home_logo" src="../city.png"></img>
             <Button type="primary">New Ticket</Button>
             <Divider />
             <br />
-            <div className= "navy">
+            <div className= "home_navy">
                 <Switch onChange={changeMode} /> Change Mode
                 <Divider type="vertical" />
                 <Switch onChange={changeTheme} /> Change Style
@@ -100,7 +100,7 @@ const Home = () => {
                     <Button type="primary">Create a New Ticket</Button>
                 </Menu>
             </div>
-            <div className='cascade'>
+            <div className='home_cascade'>
                 <Cascader
                     options={stateOptions}
                     expandTrigger="hover"
@@ -117,7 +117,7 @@ const Home = () => {
 
             </div>
             <Divider  />
-            <div className='ticketsInYourCity'>
+            <div className='home_ticketsInYourCity'>
                 <h2>Tickets in your location</h2>
                 <Button type="primary">View More</Button>
                 <List
@@ -139,7 +139,7 @@ const Home = () => {
                 />
             </div>
 
-            <div className='recentTickets'>
+            <div className='home_recentTickets'>
                 <h2>Recent Tickets</h2>
                 <Button type="primary">View More</Button>
                 <div className="cards">
@@ -166,7 +166,7 @@ const Home = () => {
             <div>
                 <h2>Popular Cities in Your State</h2>
                 <Button type="primary">View More</Button>
-                <div className="popularCities">
+                <div className="home_popularCities">
                     <Card title="Card title" bordered={true} style={{ width: 300 }}>
                         <p>Card content</p>
                         <p>Card content</p>
