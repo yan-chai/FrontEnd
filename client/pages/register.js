@@ -1,7 +1,7 @@
 import {Button, Divider, Form, Input,Checkbox} from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
-import React from "react" 
-React.useLayoutEffect = React.useEffect 
+import React from "react"
+React.useLayoutEffect = React.useEffect
 
 function Login() {
 
@@ -15,6 +15,7 @@ function Login() {
 
     return(
         <div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src='/tmp.PNG' className='intropic' />
             <div className='content'>
                 <div className='header'>Already have an Account? <a href='/register'>Sign in</a></div>
@@ -68,7 +69,7 @@ function Login() {
                 </Form>
                 </div>
             </div>
-            
+
         </div>
     )
 }

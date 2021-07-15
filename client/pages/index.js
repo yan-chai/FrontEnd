@@ -2,7 +2,7 @@ import { Row, Col, Button, Menu } from 'antd';
 import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
 import "../node_modules/antd/dist/antd.css"
 //import { useState } from 'react';
-import React from "react" 
+import React from "react"
 import Router from 'next/router';
 
 //http://localhost:3000
@@ -21,7 +21,7 @@ export default function Home() {
   function handleClick(e) {
     //console.log('click ', e.key);
     //setClick(e.key);
-    
+
     Router.push('/'+e.key);
   };
 
@@ -58,7 +58,7 @@ export default function Home() {
           <Row className="bar">
             <Button className="button" size="large" type="primary" onClick={()=>{Router.push('/register')}}>Join Now!</Button>
             <Button className="button" size="large" type="primary" onClick={()=>{Router.push('/login')}}>Log in</Button>
-            <Button className="button" size="large"onClick={()=>{Router.push('/register')}}>Visit as a Visiter</Button>
+            <Button className="button" size="large"onClick={()=>{Router.push('/register')}}>Visit as a Visitor</Button>
           </Row>
         </Col>
         <Col span={2}/>
