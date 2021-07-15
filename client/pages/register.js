@@ -1,6 +1,7 @@
 import {Button, Divider, Form, Input,Checkbox} from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import React from "react" 
+import Link from 'next/link'
 React.useLayoutEffect = React.useEffect 
 
 function Login() {
@@ -17,7 +18,7 @@ function Login() {
         <div>
             <img src='/tmp.PNG' className='intropic' />
             <div className='content'>
-                <div className='header'>Already have an Account? <a href='/register'>Sign in</a></div>
+                <div className='header'>Already have an Account? <Link href='/login'>Sign in</Link></div>
                 <div className='auth'><Button size='large'>Sign up With Google</Button><Button size='large'>Sign up With Twitter</Button></div>
                 <Divider plain>Or</Divider>
                 <div className='form'>
@@ -63,7 +64,7 @@ function Login() {
                     <Button type="primary" htmlType="submit" className="login-form-button" size='large'>
                       Create New Account
                     </Button>
-                    Or <a href="/">Back to Home Page</a>
+                    Or <Link href="/">Back to Home Page</Link>
                   </Form.Item>
                 </Form>
                 </div>

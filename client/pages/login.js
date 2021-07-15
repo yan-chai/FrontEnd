@@ -1,12 +1,31 @@
 import {Button, Divider, Form, Input,Checkbox} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import React from "react" 
+import Link from 'next/link'
+import Router from 'next/router';
 React.useLayoutEffect = React.useEffect 
 
 function Login() {
 
-  const onFinish = (values) => {
-    console.log('Success:', values);
+  async function onFinish(values) {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        "email": values.username,
+        "pwd": values.password
+      })
+    });
+    const data = await response.json();
+
+    if (data.code == 0) {
+      alert(data.message);
+    }else if (data.code == 200) {
+      alert(data.message);
+      Router.push("/home")
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -17,7 +36,7 @@ function Login() {
         <div>
             <img src='/tmp.PNG' className='intropic' />
             <div className='content'>
-                <div className='header'>Do not have account yet? <a href='/register'>Sign Up</a></div>
+                <div className='header'>Do not have account yet? <Link href='/register'>Sign Up</Link></div>
                 <div className='auth'><Button size='large'>Sign in With Google</Button><Button size='large'>Sign in With Twitter</Button></div>
                 <Divider plain>Or</Divider>
                 <div className='form'>
@@ -51,16 +70,16 @@ function Login() {
                       <Checkbox>Remember me</Checkbox>
                     </Form.Item>
 
-                    <a className="login-form-forgot" href="">
+                    <Link className="login-form-forgot" href="/resetpw">
                       Forgot password
-                    </a>
+                    </Link>
                   </Form.Item>
 
                   <Form.Item>
                     <Button type="primary" htmlType="submit" className="login-form-button">
                       Log in
                     </Button>
-                    Or <a href="">register now!</a>
+                    Or <Link href="/register">register now!</Link>
                   </Form.Item>
                 </Form>
                 </div>
