@@ -61,10 +61,10 @@ const Home = () => {
 
     return (
         <div>
-            <Row  className="homeHeader">
+            <Row className="homeHeader">
                 <Col><img className="img" src="../city.png"></img></Col>
-                <Col span={8}/>
-                <Col span={10} className="banner">
+                <Col span={10}/>
+                <Col span={12} className="banner">
                     {/*<Menu mode="horizontal">*/}
                     {/*    <Menu.Item key="newTicket" icon={<MailOutlined />}>*/}
                     {/*        New Ticket*/}
@@ -75,7 +75,7 @@ const Home = () => {
             </Row>
             <Divider />
             <br />
-            <Row>
+            <Row >
                 <Col className= "home_navy">
                     <Switch onChange={changeMode} /> Change Mode
                     <Divider type="vertical" />
@@ -83,7 +83,7 @@ const Home = () => {
                     <br />
                     <br />
                     <Menu
-                        style={{ width: 256 }}
+                        style={{ width: 256}}
                         defaultSelectedKeys={['1']}
                         defaultOpenKeys={['sub1']}
                         mode={mode}
@@ -109,34 +109,45 @@ const Home = () => {
                             <Menu.Item key="9">Option 9</Menu.Item>
                             <Menu.Item key="10">Option 10</Menu.Item>
                         </SubMenu>
-                        <Button type="primary">Create a New Ticket</Button>
                     </Menu>
+                    <Button type="primary">Create a New Ticket</Button>
                 </Col>
                 <Divider type="vertical" />
-                <Col>
-                    <Row>
-                        <div className='home_cascade'>
-                            <Cascader
-                                options={stateOptions}
-                                expandTrigger="hover"
-                                displayRender={displayRender}
-                                onChange={onChange}
-                            />
-                            <Cascader
-                                options={cityOptions}
-                                expandTrigger="hover"
-                                displayRender={displayRender}
-                                onChange={onChange}
-                            />
-                            <Button type="primary">Go to city</Button>
-                        </div>
+                <Col class = 'home_content'>
+                    <Row className = 'home_cascade'>
+                            <Col>
+                                <Row>Select State</Row>
+                                <Row>
+                                    <Cascader
+                                        options={stateOptions}
+                                        expandTrigger="hover"
+                                        displayRender={displayRender}
+                                        onChange={onChange}
+                                    />
+                                </Row>
+                            </Col>
+                            <Col>
+                                <Row>Select City</Row>
+                                <Row>
+                                    <Cascader
+                                        options={cityOptions}
+                                        expandTrigger="hover"
+                                        displayRender={displayRender}
+                                        onChange={onChange}
+                                    />
+                                </Row>
+                            </Col>
+                            <Col>
+                                <br/>
+                                <Button type="primary">Go to city</Button>
+                            </Col>
                     </Row>
-
+                    <Divider />
                     <Row>
                         <div className='home_ticketsInYourCity'>
                             <Row>
-                                <Col>
-                                    <span>Tickets in your location</span>
+                                <Col span={20}>
+                                    Tickets in your location
                                 </Col>
                                 <Col>
                                     <Button type="primary">View More</Button>
@@ -162,6 +173,7 @@ const Home = () => {
                         </div>
                     </Row>
 
+                    <Divider  />
                     <Row>
                         <Col>
                             <div className='home_recentTickets'>
@@ -169,32 +181,30 @@ const Home = () => {
                                     <Col>
                                         <span>Recent Tickets</span>
                                     </Col>
+                                    <Col pan={5}></Col>
                                     <Col>
                                         <Button type="primary">View More</Button>
                                     </Col>
                                 </Row>
                                 <div className="cards">
-                                    <Card title="Card title" bordered={true} style={{ width: 300 }}>
-                                        <p>Card content</p>
-                                        <p>Card content</p>
-                                        <p>Card content</p>
-                                    </Card>
-
-                                    <Card title="Card title" bordered={true} style={{ width: 300 }}>
-                                        <p>Card content</p>
+                                    <Card title="Card title" bordered={true} style={{ width: 350 }}>
                                         <p>Card content</p>
                                         <p>Card content</p>
                                     </Card>
-
-                                    <Card title="Card title" bordered={true} style={{ width: 300 }}>
+                                    <Divider />
+                                    <Card title="Card title" bordered={true} style={{ width: 350 }}>
                                         <p>Card content</p>
+                                        <p>Card content</p>
+                                    </Card>
+                                    <Divider  />
+                                    <Card title="Card title" bordered={true} style={{ width: 350 }}>
                                         <p>Card content</p>
                                         <p>Card content</p>
                                     </Card>
                                 </div>
                             </div>
                         </Col>
-
+                        <Divider type="vertical" />
                         <Col>
                             <div>
                                 <Row>
