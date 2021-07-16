@@ -1,4 +1,4 @@
-import {Menu, Switch, Divider, Button,Cascader,Card,List} from 'antd';
+import {Row,Menu, Switch, Divider, Button, Cascader, Card, List, Col} from 'antd';
 import {
     MailOutlined,
     CalendarOutlined,
@@ -6,6 +6,7 @@ import {
     SettingOutlined,
     LinkOutlined,
 } from '@ant-design/icons';
+import "../node_modules/antd/dist/antd.css"
 import React from "react";
 
 const { SubMenu } = Menu;
@@ -60,129 +61,178 @@ const Home = () => {
 
     return (
         <div>
-            <img className="home_logo" src="../city.png"></img>
-            <Button type="primary">New Ticket</Button>
+            <Row className="homeHeader">
+                <Col><img className="img" src="../city.png"></img></Col>
+                <Col span={10}/>
+                <Col span={12} className="banner">
+                    {/*<Menu mode="horizontal">*/}
+                    {/*    <Menu.Item key="newTicket" icon={<MailOutlined />}>*/}
+                    {/*        New Ticket*/}
+                    {/*    </Menu.Item>*/}
+                    {/*</Menu>*/}
+                    <Button type="primary">Create a New Ticket</Button>
+                </Col>
+            </Row>
             <Divider />
             <br />
-            <div className= "home_navy">
-                <Switch onChange={changeMode} /> Change Mode
-                <Divider type="vertical" />
-                <Switch onChange={changeTheme} /> Change Style
-                <br />
-                <br />
-                <Menu
-                    style={{ width: 256 }}
-                    defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['sub1']}
-                    mode={mode}
-                    theme={theme}
-                >
-                    <Menu.Item key="1" icon={<MailOutlined />}>
-                        Navigation One
-                    </Menu.Item>
-                    <Menu.Item key="2" icon={<CalendarOutlined />}>
-                        Navigation Two
-                    </Menu.Item>
-                    <SubMenu key="sub1" icon={<AppstoreOutlined />} title="Navigation Two">
-                        <Menu.Item key="3">Option 3</Menu.Item>
-                        <Menu.Item key="4">Option 4</Menu.Item>
-                        <SubMenu key="sub1-2" title="Submenu">
-                            <Menu.Item key="5">Option 5</Menu.Item>
-                            <Menu.Item key="6">Option 6</Menu.Item>
+            <Row >
+                <Col className= "home_navy">
+                    <Switch onChange={changeMode} /> Change Mode
+                    <Divider type="vertical" />
+                    <Switch onChange={changeTheme} /> Change Style
+                    <br />
+                    <br />
+                    <Menu
+                        style={{ width: 256}}
+                        defaultSelectedKeys={['1']}
+                        defaultOpenKeys={['sub1']}
+                        mode={mode}
+                        theme={theme}
+                    >
+                        <Menu.Item key="1" icon={<MailOutlined />}>
+                            Navigation One
+                        </Menu.Item>
+                        <Menu.Item key="2" icon={<CalendarOutlined />}>
+                            Navigation Two
+                        </Menu.Item>
+                        <SubMenu key="sub1" icon={<AppstoreOutlined />} title="Navigation Two">
+                            <Menu.Item key="3">Option 3</Menu.Item>
+                            <Menu.Item key="4">Option 4</Menu.Item>
+                            <SubMenu key="sub1-2" title="Submenu">
+                                <Menu.Item key="5">Option 5</Menu.Item>
+                                <Menu.Item key="6">Option 6</Menu.Item>
+                            </SubMenu>
                         </SubMenu>
-                    </SubMenu>
-                    <SubMenu key="sub2" icon={<SettingOutlined />} title="Navigation Three">
-                        <Menu.Item key="7">Option 7</Menu.Item>
-                        <Menu.Item key="8">Option 8</Menu.Item>
-                        <Menu.Item key="9">Option 9</Menu.Item>
-                        <Menu.Item key="10">Option 10</Menu.Item>
-                    </SubMenu>
+                        <SubMenu key="sub2" icon={<SettingOutlined />} title="Navigation Three">
+                            <Menu.Item key="7">Option 7</Menu.Item>
+                            <Menu.Item key="8">Option 8</Menu.Item>
+                            <Menu.Item key="9">Option 9</Menu.Item>
+                            <Menu.Item key="10">Option 10</Menu.Item>
+                        </SubMenu>
+                    </Menu>
                     <Button type="primary">Create a New Ticket</Button>
-                </Menu>
-            </div>
-            <div className='home_cascade'>
-                <Cascader
-                    options={stateOptions}
-                    expandTrigger="hover"
-                    displayRender={displayRender}
-                    onChange={onChange}
-                />
-                <Cascader
-                    options={cityOptions}
-                    expandTrigger="hover"
-                    displayRender={displayRender}
-                    onChange={onChange}
-                />
-                <Button type="primary">Go to city</Button>
+                </Col>
+                <Divider type="vertical" />
+                <Col class = 'home_content'>
+                    <Row className = 'home_cascade'>
+                            <Col>
+                                <Row>Select State</Row>
+                                <Row>
+                                    <Cascader
+                                        options={stateOptions}
+                                        expandTrigger="hover"
+                                        displayRender={displayRender}
+                                        onChange={onChange}
+                                    />
+                                </Row>
+                            </Col>
+                            <Col>
+                                <Row>Select City</Row>
+                                <Row>
+                                    <Cascader
+                                        options={cityOptions}
+                                        expandTrigger="hover"
+                                        displayRender={displayRender}
+                                        onChange={onChange}
+                                    />
+                                </Row>
+                            </Col>
+                            <Col>
+                                <br/>
+                                <Button type="primary">Go to city</Button>
+                            </Col>
+                    </Row>
+                    <Divider />
+                    <Row>
+                        <div className='home_ticketsInYourCity'>
+                            <Row>
+                                <Col span={20}>
+                                    Tickets in your location
+                                </Col>
+                                <Col>
+                                    <Button type="primary">View More</Button>
+                                </Col>
+                            </Row>
+                            <List
+                                grid={{
+                                    gutter: 16,
+                                    xs: 1,
+                                    sm: 2,
+                                    md: 4,
+                                    lg: 4,
+                                    xl: 6,
+                                    xxl: 3,
+                                }}
+                                dataSource={ticketData}
+                                renderItem={item => (
+                                    <List.Item>
+                                        <Card title={item.title}>Card content</Card>
+                                    </List.Item>
+                                )}
+                            />
+                        </div>
+                    </Row>
 
-            </div>
-            <Divider  />
-            <div className='home_ticketsInYourCity'>
-                <h2>Tickets in your location</h2>
-                <Button type="primary">View More</Button>
-                <List
-                    grid={{
-                        gutter: 16,
-                        xs: 1,
-                        sm: 2,
-                        md: 4,
-                        lg: 4,
-                        xl: 6,
-                        xxl: 3,
-                    }}
-                    dataSource={ticketData}
-                    renderItem={item => (
-                        <List.Item>
-                            <Card title={item.title}>Card content</Card>
-                        </List.Item>
-                    )}
-                />
-            </div>
+                    <Divider  />
+                    <Row>
+                        <Col>
+                            <div className='home_recentTickets'>
+                                <Row>
+                                    <Col>
+                                        <span>Recent Tickets</span>
+                                    </Col>
+                                    <Col pan={5}></Col>
+                                    <Col>
+                                        <Button type="primary">View More</Button>
+                                    </Col>
+                                </Row>
+                                <div className="cards">
+                                    <Card title="Card title" bordered={true} style={{ width: 350 }}>
+                                        <p>Card content</p>
+                                        <p>Card content</p>
+                                    </Card>
+                                    <Divider />
+                                    <Card title="Card title" bordered={true} style={{ width: 350 }}>
+                                        <p>Card content</p>
+                                        <p>Card content</p>
+                                    </Card>
+                                    <Divider  />
+                                    <Card title="Card title" bordered={true} style={{ width: 350 }}>
+                                        <p>Card content</p>
+                                        <p>Card content</p>
+                                    </Card>
+                                </div>
+                            </div>
+                        </Col>
+                        <Divider type="vertical" />
+                        <Col>
+                            <div>
+                                <Row>
+                                    <Col>
+                                        <span>Popular Cities in Your State</span>
+                                    </Col>
+                                    <Col>
+                                        <Button type="primary">View More</Button>
+                                    </Col>
+                                </Row>
+                                <div className="home_popularCities">
+                                    <Card title="Card title" bordered={true} style={{ width: 300 }}>
+                                        <p>Card content</p>
+                                        <p>Card content</p>
+                                        <p>Card content</p>
+                                    </Card>
 
-            <div className='home_recentTickets'>
-                <h2>Recent Tickets</h2>
-                <Button type="primary">View More</Button>
-                <div className="cards">
-                    <Card title="Card title" bordered={true} style={{ width: 300 }}>
-                        <p>Card content</p>
-                        <p>Card content</p>
-                        <p>Card content</p>
-                    </Card>
-
-                    <Card title="Card title" bordered={true} style={{ width: 300 }}>
-                        <p>Card content</p>
-                        <p>Card content</p>
-                        <p>Card content</p>
-                    </Card>
-
-                    <Card title="Card title" bordered={true} style={{ width: 300 }}>
-                        <p>Card content</p>
-                        <p>Card content</p>
-                        <p>Card content</p>
-                    </Card>
-                </div>
-            </div>
-
-            <div>
-                <h2>Popular Cities in Your State</h2>
-                <Button type="primary">View More</Button>
-                <div className="home_popularCities">
-                    <Card title="Card title" bordered={true} style={{ width: 300 }}>
-                        <p>Card content</p>
-                        <p>Card content</p>
-                        <p>Card content</p>
-                    </Card>
-
-                    <Card title="Card title" bordered={true} style={{ width: 300 }}>
-                        <p>Card content</p>
-                        <p>Card content</p>
-                        <p>Card content</p>
-                    </Card>
-
-                </div>
-            </div>
-
-
+                                    <Card title="Card title" bordered={true} style={{ width: 300 }}>
+                                        <p>Card content</p>
+                                        <p>Card content</p>
+                                        <p>Card content</p>
+                                    </Card>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
         </div>
     );
 };

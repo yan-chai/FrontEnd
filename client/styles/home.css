@@ -1,8 +1,15 @@
-.home_logo {
+.homeHeader {
+    width:120%;
     margin-left: 5%;
     margin-top: 1%;
 }
 
 .home_navy{
-    margin-left: 5%;git
+    margin-left: 5%;
+    height: 100%;
+    width:20%
+}
+
+.home_cascade{
+    text-align: center;
 }
