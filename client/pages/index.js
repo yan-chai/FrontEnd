@@ -58,7 +58,7 @@ export default function Home() {
           <Row className="bar">
             <Button className="button" size="large" type="primary" onClick={()=>{Router.push('/register')}}>Join Now!</Button>
             <Button className="button" size="large" type="primary" onClick={()=>{Router.push('/login')}}>Log in</Button>
-            <Button className="button" size="large"onClick={()=>{Router.push('/register')}}>Visit as a Visitor</Button>
+            <Button className="button" size="large"onClick={()=>{Router.push('/home')}}>Visit as a Visitor</Button>
           </Row>
         </Col>
         <Col span={2}/>

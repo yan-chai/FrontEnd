@@ -1,12 +1,37 @@
 import {Button, Divider, Form, Input,Checkbox} from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import React from "react"
+import Link from 'next/link'
+import Router from 'next/router'
 React.useLayoutEffect = React.useEffect
 
-function Login() {
+function Register() {
 
-  const onFinish = (values) => {
-    console.log('Success:', values);
+  async function onFinish(values) {
+    if(values.password.length < 8) {
+      alert("Password Should be 8 Character or More")
+    } else {
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          "email": values.username,
+          "pwd": values.password,
+          "name": values.username,
+          "city": 0
+        })
+      });
+      const data = await response.json();
+  
+      if (data.code == 0) {
+        alert(data.message);
+      }else if (data.code == 200) {
+        alert(data.message);
+        Router.push("/login")
+      }
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -74,4 +99,4 @@ function Login() {
     )
 }
 
-export default Login
+export default Register
