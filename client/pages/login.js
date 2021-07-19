@@ -3,13 +3,11 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import React from "react" 
 import Link from 'next/link'
 import Router from 'next/router';
-import { useCookies } from "react-cookie";
+import cookie from 'react-cookies'
 import "../node_modules/antd/dist/antd.css"
 React.useLayoutEffect = React.useEffect 
 
 function Login() {
-
-  const [cookie, setCookie] = useCookies(["user"])
 
   async function onFinish(values) {
     const response = await fetch('/api/login', {
@@ -23,17 +21,14 @@ function Login() {
       })
     });
     const data = await response.json();
-
     if (data.code == 0) {
       alert(data.message);
     }else if (data.code == 200) {
       alert(data.message);
       Router.push("/home");
-      setCookie("user", JSON.stringify(data.token), {
-        path: "/",
-        maxAge: 3600, // cookeie 一小时后过期
-        sameSite: true,
-      })
+      cookie.save('token', data.token, {
+        path: '/'
+      });
     }
   };
 
