@@ -98,16 +98,7 @@ const Profile = () => {
                             <Row>
                                 <Col>
                                     <Form.Item
-                                        name="firstname"
-                                        rules={[{ required: true, message: 'Please input your firstname!' }]}
-                                    >
-                                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="First Name" />
-                                    </Form.Item>
-                                </Col>
-
-                                <Col>
-                                    <Form.Item
-                                        name="lastname"
+                                        name="name"
                                         rules={[{ required: true, message: 'Please input your lastname!' }]}
                                     >
                                         <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Last Name" />

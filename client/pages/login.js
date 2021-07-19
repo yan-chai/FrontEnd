@@ -4,6 +4,7 @@ import React from "react"
 import Link from 'next/link'
 import Router from 'next/router';
 import { useCookies } from "react-cookie";
+import "../node_modules/antd/dist/antd.css"
 React.useLayoutEffect = React.useEffect 
 
 function Login() {

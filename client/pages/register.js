@@ -3,6 +3,7 @@ import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import React from "react"
 import Link from 'next/link'
 import Router from 'next/router'
+import "../node_modules/antd/dist/antd.css"
 React.useLayoutEffect = React.useEffect
 
 function Register() {
