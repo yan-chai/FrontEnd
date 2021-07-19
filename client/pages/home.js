@@ -8,6 +8,8 @@ import {
 } from '@ant-design/icons';
 import "../node_modules/antd/dist/antd.css"
 import React from "react";
+import Router from 'next/router';
+import cookie from 'react-cookies';
 
 const { SubMenu } = Menu;
 
@@ -31,6 +33,15 @@ const Home = () => {
 
     function onChange(value) {
         console.log(value);
+    }
+
+    function handleClick(e) {
+        if (e.key == "logout"){
+            cookie.remove('token');
+            Router.push('/login');
+        } else{
+            Router.push('/'+e.key+'?token='+cookie.load('token'));
+        }
     }
 
    // Just show the latest item.
@@ -83,6 +94,7 @@ const Home = () => {
                     <br />
                     <br />
                     <Menu
+                        onClick={handleClick}
                         style={{ width: 256}}
                         defaultSelectedKeys={['1']}
                         defaultOpenKeys={['sub1']}
@@ -103,11 +115,11 @@ const Home = () => {
                                 <Menu.Item key="6">Option 6</Menu.Item>
                             </SubMenu>
                         </SubMenu>
-                        <SubMenu key="sub2" icon={<SettingOutlined />} title="Navigation Three">
-                            <Menu.Item key="7">Option 7</Menu.Item>
-                            <Menu.Item key="8">Option 8</Menu.Item>
-                            <Menu.Item key="9">Option 9</Menu.Item>
-                            <Menu.Item key="10">Option 10</Menu.Item>
+                        <SubMenu key="sub2" icon={<SettingOutlined />} title="User">
+                            <Menu.Item key="profile">Change Name and Email</Menu.Item>
+                            <Menu.Item key="setpw">Change Password</Menu.Item>
+                            <Menu.Item key="9">User Center</Menu.Item>
+                            <Menu.Item key="logout">Log Out</Menu.Item>
                         </SubMenu>
                     </Menu>
                     <Button type="primary">Create a New Ticket</Button>
