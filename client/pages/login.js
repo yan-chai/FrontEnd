@@ -1,11 +1,11 @@
 import {Button, Divider, Form, Input,Checkbox} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import React from "react" 
+import React from "react"
 import Link from 'next/link'
 import Router from 'next/router';
-import cookie from 'react-cookies'
+import cookie from 'react-cookie'
 import "../node_modules/antd/dist/antd.css"
-React.useLayoutEffect = React.useEffect 
+React.useLayoutEffect = React.useEffect
 
 function Login() {
 
@@ -88,7 +88,7 @@ function Login() {
                 </Form>
                 </div>
             </div>
-            
+
         </div>
     )
 }

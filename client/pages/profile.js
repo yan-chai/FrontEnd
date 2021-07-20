@@ -10,7 +10,7 @@ import "../node_modules/antd/dist/antd.css"
 import React from "react";
 import Router from 'next/router';
 import Link from 'next/link';
-import cookie from 'react-cookies';
+import cookie from 'react-cookie';
 import { withRouter } from 'next/router';
 
 const { SubMenu } = Menu;
@@ -42,7 +42,7 @@ const Profile = ({profile}) => {
             })
           });
           const data = await response.json();
-      
+
           if (data.code == 0) {
             alert(data.message);
           }else if (data.code == 200) {
@@ -129,7 +129,7 @@ const Profile = ({profile}) => {
                                         </Form.Item>
                                     </Col>
                                 </Row>
-    
+
                                 <span className='inline'>Email</span>
                                 <Form.Item
                                     name="email"
@@ -141,7 +141,7 @@ const Profile = ({profile}) => {
                                         defaultValue={profile.data.email}
                                     />
                                 </Form.Item>
-    
+
                                 <span className='inline'>Country</span>
                                 <Form.Item>
                                     <Select defaultValue="USA">
@@ -157,8 +157,8 @@ const Profile = ({profile}) => {
                                         <Select.Option value="2">San Jose</Select.Option>
                                     </Select>
                                 </Form.Item>
-    
-    
+
+
                                 <Form.Item>
                                     <Button type="primary" htmlType="submit" >
                                         Save Changes
@@ -166,7 +166,7 @@ const Profile = ({profile}) => {
                                 </Form.Item>
                             </Form>
                         </div>
-    
+
                     </Col>
                 </Row>
             </div>
@@ -180,7 +180,7 @@ const Profile = ({profile}) => {
         )
     }
 
-    
+
 };
 
 Profile.getInitialProps = async (ctx) => {
