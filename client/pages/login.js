@@ -3,7 +3,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import React from "react"
 import Link from 'next/link'
 import Router from 'next/router';
-import cookie from 'react-cookie'
+import cookie from 'react-cookies'
 import "../node_modules/antd/dist/antd.css"
 React.useLayoutEffect = React.useEffect
 
