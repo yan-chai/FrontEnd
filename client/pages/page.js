@@ -9,7 +9,7 @@ import {
 import "../node_modules/antd/dist/antd.css"
 import React from "react";
 import Router from 'next/router';
-import cookie from 'react-cookie';
+import cookie from 'react-cookies';
 
 const { SubMenu } = Menu;
 function Page(){
