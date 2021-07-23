@@ -95,16 +95,14 @@ function Page(){
                             onFinishFailed={onFinishFailed}
                         >
                             <span className='inline'>Page Name</span>
-                            <Row>
-                                <Col>
+
                                     <Form.Item
                                         name="pageName"
                                         rules={[{ required: true, message: 'Please input your page name!' }]}
                                     >
                                         <Input className='pageName'/>
                                     </Form.Item>
-                                </Col>
-                            </Row>
+
 
 
 
@@ -131,8 +129,8 @@ function Page(){
                             >
                                 <textarea className='description'/>
                             </Form.Item>
-
                         </Form>
+                        <div><Button size='large'>CREATE PAGE</Button><Button size='large'>CANCEL</Button></div>
                     </div>
 
                 </Col>

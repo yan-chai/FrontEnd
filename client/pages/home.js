@@ -178,7 +178,7 @@ const Home = () => {
                                 dataSource={ticketData}
                                 renderItem={item => (
                                     <List.Item>
-                                        <Card title={item.title}>Card content</Card>
+                                        <Card title={item.title}> Card content</Card>
                                     </List.Item>
                                 )}
                             />
