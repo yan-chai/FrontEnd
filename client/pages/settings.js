@@ -1,4 +1,4 @@
-import {Row, Menu, Switch, Divider, Button, Cascader, Card, List, Col, Form, Input, Select} from 'antd';
+import {Row, Menu, Switch, Divider, Button, Cascader, Card, List, Col, Form, Input, Select, Avatar, Skeleton} from 'antd';
 import {
     MailOutlined,
     CalendarOutlined,
@@ -12,27 +12,31 @@ import Router from 'next/router';
 import cookie from 'react-cookies';
 import Navybar from "./components/navybar";
 
-const { SubMenu } = Menu;
+
+const data = [
+    {
+        title: 'Account',
+    },
+    {
+        title: 'Notifications',
+    },
+    {
+        title: 'Security',
+    },
+    {
+        title: 'Appearance',
+    },
+    {
+        title:'Billing Information',
+    },
+    {
+        title:'Connections',
+    }
+];
+
 function Settings(){
 
-    const [mode, setMode] = React.useState('inline');
-    const [theme, setTheme] = React.useState('light');
 
-    const changeMode = value => {
-        setMode(value ? 'vertical' : 'inline');
-    };
-
-    const changeTheme = value => {
-        setTheme(value ? 'dark' : 'light');
-    };
-
-    const onFinish = (values) => {
-        console.log('Success:', values);
-    };
-
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-    };
     return(
         <div>
             <Row className="homeHeader">
@@ -49,8 +53,20 @@ function Settings(){
                 <Navybar></Navybar>
 
                 <Divider type="vertical" />
-                <Col class = 'settings_content' span={8}>
-                   <h1>Settings</h1>
+                <Col class = 'settings_content' >
+                   <h2>Settings</h2>
+                    <List
+                        itemLayout="horizontal"
+                        dataSource={data}
+                        renderItem={item => (
+                            <List.Item actions={[<a key="list-loadmore-edit">more</a>]}>
+                                <List.Item.Meta
+                                    title={<a href="https://ant.design">{item.title}</a>}
+                                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                                />
+                            </List.Item>
+                        )}
+                    />
 
                 </Col>
             </Row>

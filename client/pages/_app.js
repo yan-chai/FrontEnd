@@ -5,6 +5,7 @@ import '../styles/log_and_reg.css'
 import '../styles/home.css'
 import '../styles/password.css'
 import '../styles/page.css'
+import '../styles/settings.css'
 
 function MyApp({ Component, pageProps }) {
   return (
