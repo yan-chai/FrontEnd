@@ -6,6 +6,7 @@ import '../styles/home.css'
 import '../styles/password.css'
 import '../styles/page.css'
 import '../styles/settings.css'
+import '../styles/filter.css'
 
 function MyApp({ Component, pageProps }) {
   return (

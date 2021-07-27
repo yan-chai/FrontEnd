@@ -15,7 +15,7 @@ import Navybar from "./components/navybar";
 const { SubMenu } = Menu;
 function Ticket(){
 
-    const [mode, setMode] = React.useState('inline');
+    {/*const [mode, setMode] = React.useState('inline');
     const [theme, setTheme] = React.useState('light');
 
     const changeMode = value => {
@@ -24,7 +24,7 @@ function Ticket(){
 
     const changeTheme = value => {
         setTheme(value ? 'dark' : 'light');
-    };
+    };*/}
 
     const onFinish = (values) => {
         console.log('Success:', values);
