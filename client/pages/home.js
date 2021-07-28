@@ -74,13 +74,14 @@ const Home = () => {
         <div>
             <Row className="homeHeader">
                 <Col><img className="img" src="../city.png"></img></Col>
-                <Col span={10}/>
-                <Col span={12} className="banner">
+                <Col span={12}/>
+                <Col>
                     {/*<Menu mode="horizontal">*/}
                     {/*    <Menu.Item key="newTicket" icon={<MailOutlined />}>*/}
                     {/*        New Ticket*/}
                     {/*    </Menu.Item>*/}
                     {/*</Menu>*/}
+                    <br></br>
                     <Button type="primary">Create a New Ticket</Button>
                 </Col>
             </Row>

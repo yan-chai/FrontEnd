@@ -13,7 +13,7 @@ import cookie from 'react-cookies';
 import Navybar from "./components/navybar";
 
 
-function Filter(){
+function Result(){
     const { Option } = Select;
 
     function handleChange(value) {
@@ -105,30 +105,8 @@ function Filter(){
 
                 <Divider type="vertical" />
                 <Col class = 'filter_tickets'>
-                    <Row>
-                        <Col>All requested ticket<br/>List of tickets</Col>
-                        <Col span={6}/>
-                        <Col>Sort by</Col>
-                        <Divider type="vertical" />
-                        <Col>
-                            <Select defaultValue="0" style={{ width: 80 }} onChange={handleChange}>
-                                <Option value="0">Open</Option>
-                                <Option value="1">Private</Option>
-                                <Option value="2">Closed</Option>
-                            </Select>
-                        </Col>
-                        <Divider type="vertical" />
-                        <Col>
-                            <Select defaultValue="0" style={{ width: 80 }} onChange={handleChange}>
-                                <Option value="0">Low</Option>
-                                <Option value="1">Medium</Option>
-                                <Option value="2">High</Option>
-                            </Select>
-                        </Col>
-                        <Divider type="vertical" />
-                        <Col><DatePicker onChange={onChange} /></Col>
-                    </Row>
-                    <Divider></Divider>
+
+
                     <Table columns={columns} dataSource={data} />
 
                 </Col>
@@ -137,4 +115,4 @@ function Filter(){
     );
 }
 
-export default Filter
+export default Result
