@@ -1,0 +1,19 @@
+.email_header {
+    width:120%;
+    margin-left: 20%;
+    margin-top: 1%;
+}
+.email_body{
+    margin-left: 35%;
+    margin-top: 10%;
+
+}
+.email_innerbox{
+    text-align: center;
+    background-color: lightgrey;
+    width: 500px;
+    border: 5px black;
+    padding: 50px;
+    margin: 20px;
+}
+
