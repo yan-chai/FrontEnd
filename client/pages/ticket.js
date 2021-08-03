@@ -49,7 +49,7 @@ function Ticket(){
                 <Navybar></Navybar>
 
                 <Divider type="vertical" />
-                <Col class = 'profile_content' span={8}>
+                <Col className = 'profile_content' span={14}>
                     <div className='form'>
                         <Form
                             name="ticket"
@@ -61,7 +61,7 @@ function Ticket(){
                             <span className='inline'>Title *</span>
 
                                     <Form.Item
-                                        name="pageName"
+                                        name="title"
                                         rules={[{ required: true, message: 'Please input your page name!' }]}
                                     >
                                         <Input className='pageName'/>
@@ -72,9 +72,10 @@ function Ticket(){
                             <span className='inline'>State*</span>
                             <Form.Item
                                 rules={[{ required: true, message: 'Please select state' }]}
+                                name="state"
                             >
 
-                                <Select defaultValue="CA">
+                                <Select>
                                     <Select.Option value="CA">CA</Select.Option>
                                 </Select>
                             </Form.Item>
@@ -84,7 +85,7 @@ function Ticket(){
                                 name='city'
                                 rules={[{ required: true, message: 'Please select city' }]}
                             >
-                                <Select defaultValue="0">
+                                <Select>
                                     <Select.Option value="0">San Francisco</Select.Option>
                                     <Select.Option value="1">Los Angeles</Select.Option>
                                     <Select.Option value="2">San Jose</Select.Option>
@@ -96,7 +97,7 @@ function Ticket(){
                                 name='type'
                                 rules={[{ required: true, message: 'Please select ticket type' }]}
                             >
-                                <Select defaultValue="0">
+                                <Select>
                                     <Select.Option value="0">Education</Select.Option>
                                     <Select.Option value="1">Government</Select.Option>
                                     <Select.Option value="2">Entertainment</Select.Option>
@@ -108,7 +109,7 @@ function Ticket(){
                                 name='status'
                                 rules={[{ required: true, message: 'Please select ticket' }]}
                             >
-                                <Select defaultValue="0">
+                                <Select>
                                     <Select.Option value="0">Open</Select.Option>
                                     <Select.Option value="1">Private</Select.Option>
                                     <Select.Option value="2">Closed</Select.Option>
@@ -120,7 +121,7 @@ function Ticket(){
                                 name='priority'
                                 rules={[{ required: true, message: 'Please select ticket priority' }]}
                             >
-                                <Select defaultValue="0">
+                                <Select>
                                     <Select.Option value="0">Low</Select.Option>
                                     <Select.Option value="1">Medium</Select.Option>
                                     <Select.Option value="2">High</Select.Option>
@@ -129,24 +130,23 @@ function Ticket(){
 
                             <span className='inline'>Description*</span>
                             <Form.Item
-                                name="email"
+                                name="desc"
                                 rules={[{ required: true, message: 'Please input your description here' }]}
                             >
                                 <textarea className='description'/>
                             </Form.Item>
-
-                            <span className='inline'>Tags</span>
-                                    <Form.Item
-                                        name="ticketTag"
-                                        rules={[{ required: false}]}
-                                    >
-                                        <Input className='ticketTag'/>
-                                    </Form.Item>
+                            <span className='inline'>Select*</span>
+                            <div>
+                                MAP
+                            </div>
+                            <Form.Item>
+                            <Button type="primary" htmlType="submit" size='large'>
+                                CREATE
+                            </Button>
+                            </Form.Item>
 
                         </Form>
-                        <div><Button size='large'>CANCEL</Button><Button size='large'>CREATE</Button></div>
                     </div>
-
                 </Col>
             </Row>
         </div>

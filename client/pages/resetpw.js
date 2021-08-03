@@ -9,6 +9,26 @@ import Login from "./login";
 React.useLayoutEffect = React.useEffect
 
 function Password(){
+
+    async function onFinish(values) {
+        const response = await fetch('/api/resetpw', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              "email": values.email
+            })
+          });
+          const data = await response.json();
+        if (data.code == 0) {
+            alert(data.message);
+        }else if (data.code == 200) {
+            alert(data.message);
+            Router.push('/login')
+        }
+    }
+
     return (
         <div>
             <img src='/tmp.PNG' className='intropic' />
@@ -23,6 +43,7 @@ function Password(){
                     <Form
                         name="normal_login"
                         className="login-form"
+                        onFinish={onFinish}
                     >
                         <span className='inline'>Email</span>
                         <Form.Item
