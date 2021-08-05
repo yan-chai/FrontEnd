@@ -1,0 +1,10 @@
+.ticket_author{
+    font-size: medium;
+    color: darkgray;
+}
+.ticket_content{
+    font-size: medium;
+}
+.comment-list.header{
+    font-size: x-large;
+}

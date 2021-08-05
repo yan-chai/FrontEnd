@@ -26,18 +26,9 @@ function Email(){
                         address is registered to your account.</p>
                     <h3>Don’t get the email?</h3>
                     <p>Check your email spam or junk folder
-
                         Check you’ve entered your email address correctly</p>
                 </div>
-
             </div>
-
-
-
-
-
-
-
 
         </div>
     )
