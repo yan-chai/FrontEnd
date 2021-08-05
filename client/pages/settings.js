@@ -44,7 +44,10 @@ function Settings(){
                 <Col span={10}/>
                 <Col span={12} className="banner">
                     <Button type="primary">Create a New Ticket</Button>
+
                 </Col>
+                <Col span={2}/>
+                <Col> <Button type="primary">Create a New Ticket</Button></Col>
             </Row>
             <Divider />
             <br />

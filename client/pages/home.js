@@ -75,15 +75,11 @@ const Home = () => {
             <Row className="homeHeader">
                 <Col><img className="img" src="../city.png"></img></Col>
                 <Col span={12}/>
-                <Col>
-                    {/*<Menu mode="horizontal">*/}
-                    {/*    <Menu.Item key="newTicket" icon={<MailOutlined />}>*/}
-                    {/*        New Ticket*/}
-                    {/*    </Menu.Item>*/}
-                    {/*</Menu>*/}
-                    <br></br>
+                <Col className="banner">
                     <Button type="primary">Create a New Ticket</Button>
                 </Col>
+                <Col span={2}/>
+                <Col className="banner"> <Button>Log out</Button></Col>
             </Row>
             <Divider />
             <br />
