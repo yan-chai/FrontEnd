@@ -10,15 +10,9 @@ import "../node_modules/antd/dist/antd.css"
 import Router from 'next/router';
 import cookie from 'react-cookies';
 import Navybar from "./components/navybar";
-import HomeHeader from "./components/homeHeader";
 import React, {useState} from 'react';
 import { GoogleMap, LoadScript, Marker, useLoadScript } from '@react-google-maps/api';
-<<<<<<< HEAD:client/pages/ticket.js
-
-
-=======
 import Header from "./components/header";
->>>>>>> 429client/pages/newTicket.js
 const libraries = ["places"];
 
 const { SubMenu } = Menu;
@@ -35,11 +29,9 @@ function Ticket(){
 
     {/*const [mode, setMode] = React.useState('inline');
     const [theme, setTheme] = React.useState('light');
-
     const changeMode = value => {
         setMode(value ? 'vertical' : 'inline');
     };
-
     const changeTheme = value => {
         setTheme(value ? 'dark' : 'light');
     };*/}
@@ -60,28 +52,28 @@ function Ticket(){
         const response = await fetch(URL , {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              "title": values.title,
-              "city": values.city,
-              "lat": lat,
-              "long": lng,
-              "content": values.desc,
-              "type": values.type,
-              "priority": values.priority,
-              "status": values.status
+                "title": values.title,
+                "city": values.city,
+                "lat": lat,
+                "long": lng,
+                "content": values.desc,
+                "type": values.type,
+                "priority": values.priority,
+                "status": values.status
             })
-          });
-          const data = await response.json();
-          if (data.code == 403) {
+        });
+        const data = await response.json();
+        if (data.code == 403) {
             alert(data.message);
-          }else if (data.code == 200) {
+        }else if (data.code == 200) {
             alert(data.message);
             Router.push("/home");
-          } else if (data.code == 500) {
+        } else if (data.code == 500) {
             alert("Server Error!");
-          }
+        }
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -89,11 +81,7 @@ function Ticket(){
     };
     return(
         <div>
-<<<<<<< HEAD:client/pages/ticket.js
-            <HomeHeader></HomeHeader>
-=======
             <Header/>
->>>>>>> 429bb87eb5b986224d5e62cd286c68524fa8aa2d:client/pages/newTicket.js
             <Divider />
             <br />
             <Row >
@@ -112,12 +100,12 @@ function Ticket(){
                         >
                             <span className='inline'>Title *</span>
 
-                                    <Form.Item
-                                        name="title"
-                                        rules={[{ required: true, message: 'Please input your page name!' }]}
-                                    >
-                                        <Input className='pageName'/>
-                                    </Form.Item>
+                            <Form.Item
+                                name="title"
+                                rules={[{ required: true, message: 'Please input your page name!' }]}
+                            >
+                                <Input className='pageName'/>
+                            </Form.Item>
 
 
 
@@ -188,23 +176,23 @@ function Ticket(){
                             </Form.Item>
                             <span className='inline'>Select*</span>
                             <div>
-                            <GoogleMap
-                            mapContainerStyle={mapContainerStyle}
-                            zoom={6}
-                            center={center}
-                            onClick={(e) => {
-                                setLat(e.latLng.lat());
-                                setLng(e.latLng.lng());
-                            }}>
-                                <Marker
-                                    position={{lat: lat, lng: lng}}
-                                />
-                            </GoogleMap>
+                                <GoogleMap
+                                    mapContainerStyle={mapContainerStyle}
+                                    zoom={6}
+                                    center={center}
+                                    onClick={(e) => {
+                                        setLat(e.latLng.lat());
+                                        setLng(e.latLng.lng());
+                                    }}>
+                                    <Marker
+                                        position={{lat: lat, lng: lng}}
+                                    />
+                                </GoogleMap>
                             </div>
                             <Form.Item style={{margin: 5}}>
-                            <Button type="primary" htmlType="submit" size='large'>
-                                CREATE
-                            </Button>
+                                <Button type="primary" htmlType="submit" size='large'>
+                                    CREATE
+                                </Button>
                             </Form.Item>
 
                         </Form>
