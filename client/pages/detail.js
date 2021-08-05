@@ -69,11 +69,9 @@ function Detail(){
             <Divider />
             <br />
             <Row >
-
                 <Navybar></Navybar>
-
                 <Divider type="vertical" />
-                <Col>
+                <Col span={16}>
                     <div className= "ticket_detail">
                         <h2>{ticket_title}</h2>
                         <Divider></Divider>
