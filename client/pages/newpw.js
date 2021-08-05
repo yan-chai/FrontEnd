@@ -40,13 +40,14 @@ function Newpw(){
                                 type="email"
                             />
                         </Form.Item>
+                        <Form.Item>
+                            <Button type="primary" htmlType="submit" >
+                                SUBMIT
+                            </Button>
+                        </Form.Item>
 
                     </Form>
-
                 </div>
-
-
-
 
             </div>
         </div>
