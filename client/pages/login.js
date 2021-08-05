@@ -21,14 +21,16 @@ function Login() {
       })
     });
     const data = await response.json();
-    if (data.code == 0) {
+    if (data.code == 403) {
       alert(data.message);
     }else if (data.code == 200) {
       alert(data.message);
       Router.push("/home");
-      cookie.save('token', data.token, {
+      cookie.save('token', data.data.token, {
         path: '/'
       });
+    } else if (data.code == 500) {
+      alert("Server Error!");
     }
   };
 
