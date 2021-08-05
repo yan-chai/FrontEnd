@@ -21,16 +21,16 @@ function Register() {
           "email": values.email,
           "pwd": values.password,
           "name": values.username,
-          "city": 0
+          "city": 1
         })
       });
       const data = await response.json();
   
-      if (data.code == 0) {
-        alert(data.message);
-      }else if (data.code == 200) {
+      if (data.code == 200) {
         alert(data.message);
         Router.push("/login")
+      }else {
+        alert(data.message);
       }
     }
   };

@@ -7,12 +7,23 @@ import {
     LinkOutlined, UserOutlined, LockOutlined,
 } from '@ant-design/icons';
 import "../node_modules/antd/dist/antd.css"
-import React from "react";
 import Router from 'next/router';
 import cookie from 'react-cookies';
 import Navybar from "./components/navybar";
+import React, {useState} from 'react';
+import { GoogleMap, LoadScript, Marker, useLoadScript } from '@react-google-maps/api';
+const libraries = ["places"];
 
 const { SubMenu } = Menu;
+
+const center = {
+    lat: 36.4122,
+    lng: -121.4741,
+}
+const mapContainerStyle = {
+    width: "50vw",
+    height: "50vh"
+}
 function Ticket(){
 
     {/*const [mode, setMode] = React.useState('inline');
@@ -25,6 +36,16 @@ function Ticket(){
     const changeTheme = value => {
         setTheme(value ? 'dark' : 'light');
     };*/}
+
+    const {isLoaded, loadError} = useLoadScript({
+        googleMapsApiKey: process.env.google_api_key ,
+        libraries,
+    });
+
+    const [lat, setLat] = React.useState(36.4122);
+    const [lng, setLng] = React.useState(-121.4741);
+    if (loadError) return "Error Loading Maps";
+    if (!isLoaded) return "Loading Maps";
 
     const onFinish = (values) => {
         console.log('Success:', values);
@@ -137,9 +158,20 @@ function Ticket(){
                             </Form.Item>
                             <span className='inline'>Select*</span>
                             <div>
-                                MAP
+                            <GoogleMap
+                            mapContainerStyle={mapContainerStyle}
+                            zoom={6}
+                            center={center}
+                            onClick={(e) => {
+                                setLat(e.latLng.lat());
+                                setLng(e.latLng.lng());
+                            }}>
+                                <Marker
+                                    position={{lat: lat, lng: lng}}
+                                />
+                            </GoogleMap>
                             </div>
-                            <Form.Item>
+                            <Form.Item style={{margin: 5}}>
                             <Button type="primary" htmlType="submit" size='large'>
                                 CREATE
                             </Button>
