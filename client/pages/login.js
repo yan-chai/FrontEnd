@@ -26,9 +26,6 @@ function Login() {
     }else if (data.code == 200) {
       alert(data.message);
       Router.push("/home");
-      cookie.save('token', data.data.token, {
-        path: '/'
-      });
     } else if (data.code == 500) {
       alert("Server Error!");
     }

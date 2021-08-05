@@ -12,6 +12,7 @@ import cookie from 'react-cookies';
 import Navybar from "./components/navybar";
 import React, {useState} from 'react';
 import { GoogleMap, LoadScript, Marker, useLoadScript } from '@react-google-maps/api';
+import Header from "./components/header";
 const libraries = ["places"];
 
 const { SubMenu } = Menu;
@@ -82,15 +83,7 @@ function Ticket(){
     };
     return(
         <div>
-            <Row className="homeHeader">
-                <Col><img className="img" src="../city.png"></img></Col>
-                <Col span={12}/>
-                <Col className="banner">
-                    <Button type="primary">Create a New Ticket</Button>
-                </Col>
-                <Col span={2}/>
-                <Col className="banner"> <Button>Log out</Button></Col>
-            </Row>
+            <Header/>
             <Divider />
             <br />
             <Row >

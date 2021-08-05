@@ -10,20 +10,14 @@ import "../node_modules/antd/dist/antd.css"
 import React from "react";
 import Router from 'next/router';
 import cookie from 'react-cookies';
+import Navybar from "./components/navybar";
+import Header from "./components/header";
 
 const { SubMenu } = Menu;
 
 const Home = () => {
     const [mode, setMode] = React.useState('inline');
     const [theme, setTheme] = React.useState('light');
-
-    const changeMode = value => {
-        setMode(value ? 'vertical' : 'inline');
-    };
-
-    const changeTheme = value => {
-        setTheme(value ? 'dark' : 'light');
-    };
 
     const stateOptions = [{value: 'California', label: 'California',},
                      {value: 'Washington', label: 'Washington'}];
@@ -33,15 +27,6 @@ const Home = () => {
 
     function onChange(value) {
         console.log(value);
-    }
-
-    function handleClick(e) {
-        if (e.key == "logout"){
-            cookie.remove('token');
-            Router.push('/login');
-        } else{
-            Router.push('/'+e.key+'?token='+cookie.load('token'));
-        }
     }
 
    // Just show the latest item.
@@ -72,55 +57,11 @@ const Home = () => {
 
     return (
         <div>
-            <Row className="homeHeader">
-                <Col><img className="img" src="../city.png"></img></Col>
-                <Col span={12}/>
-                <Col className="banner">
-                    <Button type="primary">Create a New Ticket</Button>
-                </Col>
-                <Col span={2}/>
-                <Col className="banner"> <Button>Log out</Button></Col>
-            </Row>
+            <Header/>
             <Divider />
             <br />
             <Row >
-                <Col className= "home_navy">
-                    <Switch onChange={changeMode} /> Change Mode
-                    <Divider type="vertical" />
-                    <Switch onChange={changeTheme} /> Change Style
-                    <br />
-                    <br />
-                    <Menu
-                        onClick={handleClick}
-                        style={{ width: 256}}
-                        defaultSelectedKeys={['1']}
-                        defaultOpenKeys={['sub1']}
-                        mode={mode}
-                        theme={theme}
-                    >
-                        <Menu.Item key="1" icon={<MailOutlined />}>
-                            Navigation One
-                        </Menu.Item>
-                        <Menu.Item key="2" icon={<CalendarOutlined />}>
-                            Navigation Two
-                        </Menu.Item>
-                        <SubMenu key="sub1" icon={<AppstoreOutlined />} title="Navigation Two">
-                            <Menu.Item key="3">Option 3</Menu.Item>
-                            <Menu.Item key="4">Option 4</Menu.Item>
-                            <SubMenu key="sub1-2" title="Submenu">
-                                <Menu.Item key="5">Option 5</Menu.Item>
-                                <Menu.Item key="6">Option 6</Menu.Item>
-                            </SubMenu>
-                        </SubMenu>
-                        <SubMenu key="sub2" icon={<SettingOutlined />} title="User">
-                            <Menu.Item key="profile">Change Name and Email</Menu.Item>
-                            <Menu.Item key="setpw">Change Password</Menu.Item>
-                            <Menu.Item key="9">User Center</Menu.Item>
-                            <Menu.Item key="logout">Log Out</Menu.Item>
-                        </SubMenu>
-                    </Menu>
-                    <Button type="primary">Create a New Ticket</Button>
-                </Col>
+            <Navybar/>
                 <Divider type="vertical" />
                 <Col class = 'home_content'>
                     <Row className = 'home_cascade'>

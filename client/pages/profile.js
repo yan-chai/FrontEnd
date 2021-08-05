@@ -12,25 +12,25 @@ import Router from 'next/router';
 import Link from 'next/link';
 import cookie from 'react-cookies';
 import { withRouter } from 'next/router';
+import Navybar from "./components/navybar";
+import Header from "./components/header";
 
 const { SubMenu } = Menu;
 
 const Profile = ({profile}) => {
-    const [mode, setMode] = React.useState('inline');
-    const [theme, setTheme] = React.useState('light');
 
-    const changeMode = value => {
-        setMode(value ? 'vertical' : 'inline');
-    };
-
-    const changeTheme = value => {
-        setTheme(value ? 'dark' : 'light');
-    };
+    function defaultCity(id) {
+        if(id==1) {
+            return "San Francisco"
+        } else if (id == 2) {
+            return "Los Angeles"
+        } else if (id == 3) {
+            return "San Jose"
+        }
+    }
 
     async function onFinish(values) {
-        console.log(values.city)
-        const URL = '/api/user?token='+cookie.load('token');
-        const response = await fetch(URL, {
+        const response = await fetch("/api/user", {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -58,53 +58,11 @@ const Profile = ({profile}) => {
     if (profile.code == 200) {
         return (
             <div>
-                <Row className="homeHeader">
-                    <Col><img className="img" src="../city.png"></img></Col>
-                    <Col span={12}/>
-                    <Col className="banner">
-                        <Button type="primary">Create a New Ticket</Button>
-                    </Col>
-                    <Col span={2}/>
-                    <Col className="banner"> <Button>Log out</Button></Col>
-                </Row>
+                <Header/>
                 <Divider />
                 <br />
                 <Row >
-                    <Col className= "home_navy">
-                        <Switch onChange={changeMode} /> Change Mode
-                        <Divider type="vertical" />
-                        <Switch onChange={changeTheme} /> Change Style
-                        <br />
-                        <br />
-                        <Menu
-                            style={{ width: 256}}
-                            defaultSelectedKeys={['1']}
-                            defaultOpenKeys={['sub1']}
-                            mode={mode}
-                            theme={theme}
-                        >
-                            <Menu.Item key="1" icon={<MailOutlined />}>
-                                Navigation One
-                            </Menu.Item>
-                            <Menu.Item key="2" icon={<CalendarOutlined />}>
-                                Navigation Two
-                            </Menu.Item>
-                            <SubMenu key="sub1" icon={<AppstoreOutlined />} title="Navigation Two">
-                                <Menu.Item key="3">Option 3</Menu.Item>
-                                <Menu.Item key="4">Option 4</Menu.Item>
-                                <SubMenu key="sub1-2" title="Submenu">
-                                    <Menu.Item key="5">Option 5</Menu.Item>
-                                    <Menu.Item key="6">Option 6</Menu.Item>
-                                </SubMenu>
-                            </SubMenu>
-                            <SubMenu key="sub2" icon={<SettingOutlined />} title="Navigation Three">
-                                <Menu.Item key="7">Option 7</Menu.Item>
-                                <Menu.Item key="8">Option 8</Menu.Item>
-                                <Menu.Item key="9">Option 9</Menu.Item>
-                                <Menu.Item key="10">Option 10</Menu.Item>
-                            </SubMenu>
-                        </Menu>
-                    </Col>
+                   <Navybar/>
                     <Divider type="vertical" />
                     <Col class = 'profile_content' span={8}>
                         <div className='form'>
@@ -148,10 +106,10 @@ const Profile = ({profile}) => {
 
                                 <span className='inline'>City</span>
                                 <Form.Item name='city'>
-                                    <Select defaultValue="0">
-                                        <Select.Option value="0">San Francisco</Select.Option>
-                                        <Select.Option value="1">Los Angeles</Select.Option>
-                                        <Select.Option value="2">San Jose</Select.Option>
+                                    <Select defaultValue={defaultCity(profile.data.CityId)}>
+                                        <Select.Option value="1">San Francisco</Select.Option>
+                                        <Select.Option value="2">Los Angeles</Select.Option>
+                                        <Select.Option value="3">San Jose</Select.Option>
                                     </Select>
                                 </Form.Item>
 
@@ -182,8 +140,7 @@ const Profile = ({profile}) => {
 
 Profile.getInitialProps = async (ctx) => {
 
-    const token = ctx.query.token;
-    const URL = "http://127.0.0.1:3000/api/user?token="+token;
+    const URL = "http://127.0.0.1:3000/api/user";
     const res = await fetch(URL, {
         method: "GET",
         mode: "cors",
