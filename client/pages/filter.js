@@ -83,7 +83,7 @@ function Filter(){
             // eslint-disable-next-line react/display-name
             render: () => (
                 <Space size="middle">
-                    <a>more</a>
+                    <a>detail</a>
                 </Space>
             ),
         },

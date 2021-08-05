@@ -49,6 +49,7 @@ function Password(){
                         <Form.Item
                             name="email"
                             rules={[{ required: true, message: 'Please input your Email!' }]}
+                            style={{ width: 600 }}
                         >
                             <Input
                                 prefix={<LockOutlined className="site-form-item-icon" />}
