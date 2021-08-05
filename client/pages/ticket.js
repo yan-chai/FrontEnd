@@ -58,10 +58,12 @@ function Ticket(){
         <div>
             <Row className="homeHeader">
                 <Col><img className="img" src="../city.png"></img></Col>
-                <Col span={10}/>
-                <Col span={12} className="banner">
+                <Col span={12}/>
+                <Col className="banner">
                     <Button type="primary">Create a New Ticket</Button>
                 </Col>
+                <Col span={2}/>
+                <Col className="banner"> <Button>Log out</Button></Col>
             </Row>
             <Divider />
             <br />

@@ -103,9 +103,6 @@ function Page(){
                                         <Input className='pageName'/>
                                     </Form.Item>
 
-
-
-
                             <span className='inline'>Country</span>
                             <Form.Item>
                                 <Select defaultValue="USA">
