@@ -20,24 +20,24 @@ function Newpw(){
                     <Form>
                         <span className='inline'>New Password</span>
                         <Form.Item
-                            name="email"
+                            name="pw1"
                             rules={[{ required: true, message: 'Please input your new password!' }]}
                             style={{ width: 600 }}
                         >
                             <Input
                                 prefix={<LockOutlined className="site-form-item-icon" />}
-                                type="email"
+                                type="password"
                             />
                         </Form.Item>
                         <span className='inline'>Retype password</span>
                         <Form.Item
-                            name="email"
+                            name="pw2"
                             rules={[{ required: true, message: 'Please retype your new password!' }]}
                             style={{ width: 600 }}
                         >
                             <Input
                                 prefix={<LockOutlined className="site-form-item-icon" />}
-                                type="email"
+                                type="password"
                             />
                         </Form.Item>
                         <Form.Item>
