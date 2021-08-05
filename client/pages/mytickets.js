@@ -7,7 +7,7 @@ import Navybar from "./components/navybar";
 import HomeHeader from "./components/homeHeader";
 
 
-function Filter(){
+function Mytickets(){
     const { Option } = Select;
 
     function handleChange(value) {
@@ -39,11 +39,7 @@ function Filter(){
             dataIndex: 'id',
             key: 'id',
         },
-        {
-            title: 'Requester name',
-            dataIndex: 'requester_name',
-            key: 'requester_name',
-        },
+
         {
             title: 'Subjects',
             dataIndex: 'subject',
@@ -61,11 +57,7 @@ function Filter(){
             dataIndex: 'priority',
             key: 'priority',
         },
-        {
-            title: 'Assignee',
-            dataIndex: 'assignee',
-            key: 'assignee',
-        },
+
         {
             title: 'Create Date',
             dataIndex: 'createDate',
@@ -73,11 +65,31 @@ function Filter(){
         },
         {
             title: '',
-            key: 'action',
+            key: 'detail',
             // eslint-disable-next-line react/display-name
             render: () => (
                 <Space size="middle">
                     <a>detail</a>
+                </Space>
+            ),
+        },
+        {
+            title: '',
+            key: 'edit',
+            // eslint-disable-next-line react/display-name
+            render: () => (
+                <Space size="middle">
+                    <a>edit</a>
+                </Space>
+            ),
+        },
+        {
+            title: '',
+            key: 'delete',
+            // eslint-disable-next-line react/display-name
+            render: () => (
+                <Space size="middle">
+                    <a>delete</a>
                 </Space>
             ),
         },
@@ -94,9 +106,17 @@ function Filter(){
                 <Divider type="vertical" />
                 <Col class = 'filter_tickets'>
                     <Row>
-                        <Col>All requested ticket<br/>List of tickets</Col>
-                        <Col span={6}/>
+                        <Col>My tickets<br/>List of tickets</Col>
+                        <Col span={9}/>
                         <Col>Sort by</Col>
+                        <Divider type="vertical" />
+                        <Col>
+                            <Select defaultValue="0" style={{ width: 150 }} onChange={handleChange}>
+                                <Option value="0">San Francisco</Option>
+                                <Option value="1">San Jose</Option>
+                                <Option value="2">Los Angels</Option>
+                            </Select>
+                        </Col>
                         <Divider type="vertical" />
                         <Col>
                             <Select defaultValue="0" style={{ width: 80 }} onChange={handleChange}>
@@ -125,4 +145,4 @@ function Filter(){
     );
 }
 
-export default Filter
+export default Mytickets

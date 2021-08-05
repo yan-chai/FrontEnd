@@ -11,6 +11,7 @@ import React from "react";
 import Router from 'next/router';
 import cookie from 'react-cookies';
 import Navybar from "./components/navybar";
+import HomeHeader from "./components/homeHeader";
 
 
 const data = [
@@ -39,16 +40,7 @@ function Settings(){
 
     return(
         <div>
-            <Row className="homeHeader">
-                <Col><img className="img" src="../city.png"></img></Col>
-                <Col span={10}/>
-                <Col span={12} className="banner">
-                    <Button type="primary">Create a New Ticket</Button>
-
-                </Col>
-                <Col span={2}/>
-                <Col> <Button type="primary">Create a New Ticket</Button></Col>
-            </Row>
+            <HomeHeader></HomeHeader>
             <Divider />
             <br />
             <Row >

@@ -10,8 +10,11 @@ import "../node_modules/antd/dist/antd.css"
 import Router from 'next/router';
 import cookie from 'react-cookies';
 import Navybar from "./components/navybar";
+import HomeHeader from "./components/homeHeader";
 import React, {useState} from 'react';
 import { GoogleMap, LoadScript, Marker, useLoadScript } from '@react-google-maps/api';
+
+
 const libraries = ["places"];
 
 const { SubMenu } = Menu;
@@ -56,15 +59,7 @@ function Ticket(){
     };
     return(
         <div>
-            <Row className="homeHeader">
-                <Col><img className="img" src="../city.png"></img></Col>
-                <Col span={12}/>
-                <Col className="banner">
-                    <Button type="primary">Create a New Ticket</Button>
-                </Col>
-                <Col span={2}/>
-                <Col className="banner"> <Button>Log out</Button></Col>
-            </Row>
+            <HomeHeader></HomeHeader>
             <Divider />
             <br />
             <Row >
