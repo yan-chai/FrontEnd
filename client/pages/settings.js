@@ -11,42 +11,44 @@ import React from "react";
 import Router from 'next/router';
 import cookie from 'react-cookies';
 import Navybar from "./components/navybar";
-import HomeHeader from "./components/homeHeader";
+import Header from "./components/header";
+import Link from 'next/link';
 
 
 const data = [
     {
         title: 'Account',
+        url: './settings',
+        desc: 'User Seeting center'
     },
     {
-        title: 'Notifications',
+        title: 'Reset Email & Name',
+        url: './profile',
+        desc: 'Edit User Email, City, Name'
     },
     {
         title: 'Security',
+        url: './setpw',
+        desc: 'Reset User Password'
     },
     {
-        title: 'Appearance',
-    },
-    {
-        title:'Billing Information',
-    },
-    {
-        title:'Connections',
+        title:'My Tickets',
+        url: './mytickets',
+        desc: 'All Tickets User Posted'
     }
 ];
 
-function Settings(){
+function Settings({profile}){
 
 
     return(
         <div>
-            <HomeHeader></HomeHeader>
+            <Header></Header>
             <Divider />
             <br />
             <Row >
 
                 <Navybar></Navybar>
-
                 <Divider type="vertical" />
                 <Col class = 'settings_content' >
                    <h2>Settings</h2>
@@ -54,10 +56,10 @@ function Settings(){
                         itemLayout="horizontal"
                         dataSource={data}
                         renderItem={item => (
-                            <List.Item actions={[<a key="list-loadmore-edit">more</a>]}>
+                            <List.Item actions={[<Link href={item.url}>More</Link>]}>
                                 <List.Item.Meta
-                                    title={<a href="https://ant.design">{item.title}</a>}
-                                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                                    title={<Link href={item.url}>{item.title}</Link>}
+                                    description={item.desc}
                                 />
                             </List.Item>
                         )}
@@ -67,6 +69,20 @@ function Settings(){
             </Row>
         </div>
     );
+}
+
+Settings.getInitialProps = async (ctx) => {
+
+    const URL = "http://127.0.0.1:3000/api/user/setting";
+    const res = await fetch(URL, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    const json = await res.json();
+    return {profile: json}
 }
 
 export default Settings

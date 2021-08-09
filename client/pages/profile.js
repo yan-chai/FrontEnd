@@ -30,7 +30,7 @@ const Profile = ({profile}) => {
     }
 
     async function onFinish(values) {
-        const response = await fetch("/api/user", {
+        const response = await fetch("/api/user/setting", {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -140,7 +140,7 @@ const Profile = ({profile}) => {
 
 Profile.getInitialProps = async (ctx) => {
 
-    const URL = "http://127.0.0.1:3000/api/user";
+    const URL = "http://127.0.0.1:3000/api/user/setting";
     const res = await fetch(URL, {
         method: "GET",
         mode: "cors",

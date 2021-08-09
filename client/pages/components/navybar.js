@@ -41,9 +41,9 @@ function Navybar(){
         } else if (e.key == 1) {
             Router.push('/home');
         } else if (e.key == 2) {
-            Router.push('/filter');
+            Router.push('/tickets');
         } else if (e.key == 4) {
-            Router.push('/setting');
+            Router.push('/settings');
         } else if (e.key == 5) {
             Router.push('/profile');
         } else if (e.key == 6) {
@@ -68,7 +68,6 @@ function Navybar(){
             <Menu
                 onClick={handleClick}
                 style={{ width: 256}}
-                defaultSelectedKeys={['1']}
                 mode={mode}
                 theme={theme}
             >
