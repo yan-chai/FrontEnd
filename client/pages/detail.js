@@ -8,11 +8,15 @@ import {
 } from '@ant-design/icons';
 import "../node_modules/antd/dist/antd.css"
 import React from "react";
+import { withRouter } from 'next/router';
 import Router from 'next/router';
+import { useRouter } from 'next/router'
 import cookie from 'react-cookies';
 import moment from 'moment';
 
 import Navybar from "./components/navybar";
+import { GoogleMap, LoadScript, Marker, useLoadScript } from '@react-google-maps/api';
+const libraries = ["places"];
 
 const data = [
     {
@@ -49,13 +53,71 @@ const data = [
     },
 ];
 
+const mapContainerStyle = {
+    width: "30vw",
+    height: "50vh",
+}
 
 
-
-function Detail(){
-    const author = "Lucy";
-    const ticket_title = "This is the title of the ticket";
+function Detail({ticket}){
+    
+    const author = ticket.data.ticketAuthor.name;
+    const ticket_title = ticket.data.title;
+    const content = ticket.data.content;
     const { TextArea } = Input;
+    const center = {
+        lat: ticket.data.lat,
+        lng: ticket.data.long,
+    };
+    const lat = ticket.data.lat;
+    const lng = ticket.data.long;
+    const {isLoaded, loadError} = useLoadScript({
+        googleMapsApiKey: process.env.google_api_key ,
+        libraries,
+    });
+    const rate = ticket.data.rateSum;
+    if (loadError) return "Error Loading Maps";
+    if (!isLoaded) return "Loading Maps";
+    const router = useRouter()
+    const {id} = router.query
+    async function onFinish(values) {
+        const URL = "http://127.0.0.1:3000/api/reply?ticket="+id;
+        console.log(URL)
+        const response = await fetch(URL , {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "content": values.content
+            })
+        });
+        const data = await response.json();
+        if (data.code == 403) {
+            alert(data.message);
+            Router.push("/login")
+        }else if (data.code == 200) {
+            alert(data.message);
+            Router.push("/home");
+        } else if (data.code == 500) {
+            alert("Server Error!");
+        }
+    };
+    const replies = ticket.data.Replies
+    async function deleteComment(id) {
+        const URL = "http://127.0.0.1:3000/api/reply?reply="+id;
+        const response = await fetch(URL , {method: "DELETE"})
+        const data = await response.json();
+        if (data.code == 403) {
+            alert(data.message);
+            Router.push("/login")
+        }else if (data.code == 200) {
+            alert(data.message);
+            Router.push("/home");
+        } else if (data.code == 500) {
+            alert("Server Error!");
+        }
+    }
 
     return(
         <div>
@@ -78,8 +140,21 @@ function Detail(){
                         <h2>{ticket_title}</h2>
                         <Divider></Divider>
                         <span className="ticket_author">{author}</span>
-                        <p className="ticket_content">This the the content of the ticket</p>
+                        <br />
+                        <GoogleMap
+                        mapContainerStyle={mapContainerStyle}
+                        zoom={6}
+                        center={center}
+                        >
+                            <Marker
+                                position={{lat: lat, lng: lng}}
+                            />
+                        </GoogleMap>
+                        <br />
+                        <p className="ticket_content">{content}</p>
+                        <br />
                         <Row>
+                            <Col span={4}>Rate: {rate}</Col>
                             <Col><Button type="primary"> Upvote </Button></Col>
                             <Col span={2}/>
                             <Col><Button type="primary">Downvote</Button></Col>
@@ -91,16 +166,16 @@ function Detail(){
                     <div className="comments">
                         <List
                             className="comment-list"
-                            header={`Comments: ${data.length} replies`}
+                            header={`Comments: ${replies.length} replies`}
                             itemLayout="horizontal"
-                            dataSource={data}
+                            dataSource={replies}
                             renderItem={item => (
                                 <li>
                                     <Comment
-                                        actions={item.actions}
-                                        author={item.author}
+                                        actions={[<span key="comment-delete" onClick={() => {deleteComment(item.id)}}>Delete</span>]}
+                                        author={item.replyAuthor.name}
                                         content={item.content}
-                                        datetime={item.datetime}
+                                        datetime={item.createdAt}
                                     />
                                 </li>
                             )}
@@ -109,8 +184,8 @@ function Detail(){
                     </div>
                     <Divider></Divider>
                     <div className="new_comment">
-
-                            <Form.Item>
+                        <Form onFinish={onFinish}>
+                            <Form.Item name="content">
                                 <TextArea rows={4} />
                             </Form.Item>
                             <Form.Item>
@@ -118,6 +193,7 @@ function Detail(){
                                     Add Comment
                                 </Button>
                             </Form.Item>
+                        </Form>
                     </div>
                 </Col>
             </Row>
@@ -125,4 +201,17 @@ function Detail(){
     );
 }
 
-export default Detail
+Detail.getInitialProps = async (ctx) => {
+
+    const URL = "http://127.0.0.1:3000/api/ticket/?id=" + ctx.query.id;
+    const res = await fetch(URL, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    const json = await res.json();
+    return {ticket: json}
+}
+export default withRouter(Detail);

@@ -1,61 +1,79 @@
 import {Row, Menu, Switch, Divider, Button, Cascader, Card, List, Col, Form, Input, Select} from 'antd';
-import {
-    MailOutlined,
-    CalendarOutlined,
-    AppstoreOutlined,
-    SettingOutlined,
-    LinkOutlined, UserOutlined, LockOutlined,
-} from '@ant-design/icons';
 import "../node_modules/antd/dist/antd.css"
 import Router from 'next/router';
+import { useRouter } from 'next/router'
 import cookie from 'react-cookies';
 import Navybar from "./components/navybar";
 import React, {useState} from 'react';
+import { withRouter } from 'next/router';
 import { GoogleMap, LoadScript, Marker, useLoadScript } from '@react-google-maps/api';
 import Header from "./components/header";
 const libraries = ["places"];
 
 const { SubMenu } = Menu;
 
-const center = {
-    lat: 36.4122,
-    lng: -121.4741,
-}
 const mapContainerStyle = {
     width: "50vw",
     height: "50vh"
 }
-function Ticket(){
+function Edit({ticket}){
 
-    {/*const [mode, setMode] = React.useState('inline');
-    const [theme, setTheme] = React.useState('light');
-    const changeMode = value => {
-        setMode(value ? 'vertical' : 'inline');
-    };
-    const changeTheme = value => {
-        setTheme(value ? 'dark' : 'light');
-    };*/}
+    const router = useRouter()
+    const {id} = router.query
+    console.log(ticket)
+    console.log(id)
+
+    const center = {
+        lat: ticket.data.lat,
+        lng: ticket.data.long
+    }
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.google_api_key ,
         libraries,
     });
 
-    const [lat, setLat] = React.useState(36.4122);
-    const [lng, setLng] = React.useState(-121.4741);
+    const [lat, setLat] = React.useState(ticket.data.lat);
+    const [lng, setLng] = React.useState(ticket.data.long);
     if (loadError) return "Error Loading Maps";
     if (!isLoaded) return "Loading Maps";
 
+    function typeOfTicket(type) {
+        if(type == 1) {
+            return "Education"
+        } else if (type ==2) {
+            return "Government"
+        } else {
+            return "Entertainment"
+        }
+    }
+
+    function status(type) {
+        if (type) {
+            return "Close"
+        } else {
+            return "Open"
+        }
+    }
+    function prio(type) {
+        if (type == 0) {
+            return "Low"
+        } else if (type == 1) {
+            return "Medium"
+        } else {
+            return "High"
+        }
+    }
+
     async function onFinish(values) {
-        const URL = "http://127.0.0.1:3000/api/ticket";
+        const URL = "http://127.0.0.1:3000/api/ticket?id="+id;
         const response = await fetch(URL , {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 "title": values.title,
-                "city": values.city,
                 "lat": lat,
                 "long": lng,
                 "content": values.desc,
@@ -67,6 +85,7 @@ function Ticket(){
         const data = await response.json();
         if (data.code == 403) {
             alert(data.message);
+            Router.push("/login")
         }else if (data.code == 200) {
             alert(data.message);
             Router.push("/home");
@@ -103,40 +122,14 @@ function Ticket(){
                                 name="title"
                                 rules={[{ required: true, message: 'Please input your page name!' }]}
                             >
-                                <Input className='pageName'/>
+                                <Input className='pageName' defaultValue={ticket.data.title} initialValues={ticket.data.title}/>
                             </Form.Item>
-
-
-
-                            <span className='inline'>State*</span>
-                            <Form.Item
-                                rules={[{ required: true, message: 'Please select state' }]}
-                                name="state"
-                            >
-
-                                <Select>
-                                    <Select.Option value="CA">CA</Select.Option>
-                                </Select>
-                            </Form.Item>
-
-                            <span className='inline'>City*</span>
-                            <Form.Item
-                                name='city'
-                                rules={[{ required: true, message: 'Please select city' }]}
-                            >
-                                <Select>
-                                    <Select.Option value="1">San Francisco</Select.Option>
-                                    <Select.Option value="2">Los Angeles</Select.Option>
-                                    <Select.Option value="3">San Jose</Select.Option>
-                                </Select>
-                            </Form.Item>
-
                             <span className='inline'>Type*</span>
                             <Form.Item
                                 name='type'
                                 rules={[{ required: true, message: 'Please select ticket type' }]}
                             >
-                                <Select>
+                                <Select defaultValue={typeOfTicket(ticket.data.type)} initialValues={ticket.data.type}>
                                     <Select.Option value="1">Education</Select.Option>
                                     <Select.Option value="2">Government</Select.Option>
                                     <Select.Option value="3">Entertainment</Select.Option>
@@ -148,7 +141,7 @@ function Ticket(){
                                 name='status'
                                 rules={[{ required: true, message: 'Please select ticket' }]}
                             >
-                                <Select>
+                                <Select defaultValue={status(ticket.data.status)} initialValues={ticket.data.status}>
                                     <Select.Option value="0">Open</Select.Option>
                                     <Select.Option value="1">Closed</Select.Option>
                                 </Select>
@@ -159,7 +152,7 @@ function Ticket(){
                                 name='priority'
                                 rules={[{ required: true, message: 'Please select ticket priority' }]}
                             >
-                                <Select>
+                                <Select defaultValue={prio(ticket.data.priority)} initialValues={ticket.data.priority}>
                                     <Select.Option value="0">Low</Select.Option>
                                     <Select.Option value="1">Medium</Select.Option>
                                     <Select.Option value="2">High</Select.Option>
@@ -171,7 +164,7 @@ function Ticket(){
                                 name="desc"
                                 rules={[{ required: true, message: 'Please input your description here' }]}
                             >
-                                <textarea className='description'/>
+                                <textarea className='description' defaultValue={ticket.data.content} initialValues={ticket.data.content}/>
                             </Form.Item>
                             <span className='inline'>Select*</span>
                             <div>
@@ -202,4 +195,28 @@ function Ticket(){
     );
 }
 
-export default Ticket
+Edit.getInitialProps = async (ctx) => {
+
+    const URL = "http://127.0.0.1:3000/api/ticket/?id=" + ctx.query.id;
+    const res = await fetch(URL, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    const json = await res.json();
+    if (json.code == 200) {
+        return {ticket: json}
+    } else if (json.code == 500) {
+        return {ticket: {
+            code: 500
+        }}
+    } else if (json.code == 403) {
+        return {ticket: {
+            code: 403
+        }}
+    }
+}
+
+export default withRouter(Edit);

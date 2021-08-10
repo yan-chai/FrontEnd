@@ -48,6 +48,8 @@ function Navybar(){
             Router.push('/profile');
         } else if (e.key == 6) {
             Router.push('/setpw');
+        } else if (e.key == 7) {
+            Router.push('/mytickets');
         }
     }
 
