@@ -40,8 +40,13 @@ function Login() {
         <img src='/tmp.PNG' className='intropic' />
         <div className='content'>
           <div className='header'>Do not have account yet? <Link href='/register'>Sign Up</Link></div>
-          <div className='auth'><Button size='large'>Sign in With Google</Button><Button size='large'>Sign in With Twitter</Button></div>
-          <Divider plain>Or</Divider>
+          { /*<div className='auth'><Button size='large'>Sign in With Google</Button><Button size='large'>Sign in With Twitter</Button></div>
+          <Divider plain>Or</Divider>*/}
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
           <div className='form'>
             <Form
                 name="normal_login"
@@ -79,10 +84,10 @@ function Login() {
               </Form.Item>
 
               <Form.Item>
-                <Button type="primary" htmlType="submit" className="login-form-button">
-                  Log in
+                <Button type="primary" htmlType="submit" className="login-form-button" style={{ width: 150 }}>
+                  LOG IN
                 </Button>
-                Or <Link href="/register">register now!</Link>
+                Or <Link href="/register">Register Now!</Link>
               </Form.Item>
             </Form>
           </div>
