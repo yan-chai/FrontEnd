@@ -49,12 +49,17 @@ export default function Home() {
         <Col span={2}/>
         <Col span={20} className="content">
           <h1 className="title">City Log</h1>
-          <h2 className="subtitle">Join us today!</h2>
-          <div className="intro">
+          <br></br>
+          <h1 className="slogan">Let's Unite for Better City</h1>
+          {/*<h2 className="subtitle">Join us today!</h2>
+            <div className="intro">
             <li className="item">intro 1</li>
             <li className="item">intro 2</li>
             <li className="item">intro 3</li>
-          </div>
+            </div>
+            */
+          }
+          <br></br>
           <Row className="bar">
             <Button className="button" size="large" type="primary" onClick={()=>{Router.push('/register')}}>Join Now!</Button>
             <Button className="button" size="large" type="primary" onClick={()=>{Router.push('/login')}}>Log in</Button>
