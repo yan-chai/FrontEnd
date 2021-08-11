@@ -143,14 +143,14 @@ function Detail({ticket}){
             Router.push("/login")
         }else if (data.code == 200) {
             alert(data.message);
-            Router.push("/home");
+            Router.push("/detail?id="+id)
         } else if (data.code == 500) {
             alert("Server Error!");
         }
     };
     const replies = ticket.data.Replies
-    async function deleteComment(id) {
-        const URL = "http://127.0.0.1:3000/api/reply?reply="+id;
+    async function deleteComment(cid) {
+        const URL = "http://127.0.0.1:3000/api/reply?reply="+cid;
         const response = await fetch(URL , {method: "DELETE"})
         const data = await response.json();
         if (data.code == 403) {
@@ -158,7 +158,7 @@ function Detail({ticket}){
             Router.push("/login")
         }else if (data.code == 200) {
             alert(data.message);
-            Router.push("/home");
+            Router.push("/detail?id="+id)
         } else if (data.code == 500) {
             alert("Server Error!");
         }

@@ -17,24 +17,11 @@ const libraries = ["places"];
 
 const { SubMenu } = Menu;
 
-const center = {
-    lat: 36.4122,
-    lng: -121.4741,
-}
 const mapContainerStyle = {
     width: "50vw",
     height: "50vh"
 }
 function Ticket(){
-
-    {/*const [mode, setMode] = React.useState('inline');
-    const [theme, setTheme] = React.useState('light');
-    const changeMode = value => {
-        setMode(value ? 'vertical' : 'inline');
-    };
-    const changeTheme = value => {
-        setTheme(value ? 'dark' : 'light');
-    };*/}
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.google_api_key ,
@@ -45,6 +32,19 @@ function Ticket(){
     const [lng, setLng] = React.useState(-121.4741);
     if (loadError) return "Error Loading Maps";
     if (!isLoaded) return "Loading Maps";
+
+    function handleCity(value) {
+        if (value == 1) {
+            setLat(37.6439)
+            setLng(-122.2459)
+        } else if (value == 2) {
+            setLat(34.0339)
+            setLng(-118.1559)
+        } else {
+            setLat(37.1815)
+            setLng(-121.5222)
+        }
+    }
 
     async function onFinish(values) {
         const URL = "http://127.0.0.1:3000/api/ticket";
@@ -124,7 +124,7 @@ function Ticket(){
                                 name='city'
                                 rules={[{ required: true, message: 'Please select city' }]}
                             >
-                                <Select>
+                                <Select onChange={handleCity}>
                                     <Select.Option value="1">San Francisco</Select.Option>
                                     <Select.Option value="2">Los Angeles</Select.Option>
                                     <Select.Option value="3">San Jose</Select.Option>
@@ -178,7 +178,7 @@ function Ticket(){
                                 <GoogleMap
                                     mapContainerStyle={mapContainerStyle}
                                     zoom={6}
-                                    center={center}
+                                    center={{lat: lat, lng:lng}}
                                     onClick={(e) => {
                                         setLat(e.latLng.lat());
                                         setLng(e.latLng.lng());

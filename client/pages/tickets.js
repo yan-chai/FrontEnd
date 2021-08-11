@@ -109,9 +109,9 @@ function Filter(){
             key: 'status',
             render: text => {
                 if (text) {
-                    return <a>Open</a>
-                } else {
                     return <a>Close</a>
+                } else {
+                    return <a>Open</a>
                 }
             },
         },
@@ -170,9 +170,9 @@ function Filter(){
                         <Col>Sort by</Col>
                         <Divider type="vertical" />
                         <Col>
-                            <Select defaultValue="true" style={{ width: 80 }} onChange={changeStatu}>
-                                <Option value="true">Open</Option>
-                                <Option value="false">Closed</Option>
+                            <Select defaultValue="false" style={{ width: 80 }} onChange={changeStatu}>
+                                <Option value="false">Open</Option>
+                                <Option value="true">Closed</Option>
                             </Select>
                         </Col>
                         <Divider type="vertical" />

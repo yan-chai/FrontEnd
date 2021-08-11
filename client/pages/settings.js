@@ -51,7 +51,7 @@ function Settings({profile}){
                 <Navybar></Navybar>
                 <Divider type="vertical" />
                 <Col class = 'settings_content' >
-                   <h2>Settings</h2>
+                   <h2>User Center</h2>
                     <List
                         itemLayout="horizontal"
                         dataSource={data}

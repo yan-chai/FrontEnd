@@ -46,7 +46,7 @@ const Profile = ({profile}) => {
           if (data.code == 200) {
             alert(data.message);
             Router.push("/login")
-          }else if (data.code == 200) {
+          }else if (data.code != 200) {
             alert(data.message);
           }
     };

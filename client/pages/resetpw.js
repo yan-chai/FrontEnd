@@ -11,7 +11,7 @@ React.useLayoutEffect = React.useEffect
 function Password(){
 
     async function onFinish(values) {
-        const response = await fetch('/api/resetpw', {
+        const response = await fetch('/api/user/sendRecover', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ function Password(){
             alert(data.message);
         }else if (data.code == 200) {
             alert(data.message);
-            Router.push('/login')
+            Router.push('/email')
         }
     }
 

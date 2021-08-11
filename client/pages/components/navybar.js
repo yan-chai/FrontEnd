@@ -80,7 +80,7 @@ function Navybar(){
                     View Tickets
                 </Menu.Item>
                 <SubMenu key="3" icon={<SettingOutlined />} title="User">
-                    <Menu.Item key="4">center</Menu.Item>
+                    <Menu.Item key="4">Center</Menu.Item>
                     <Menu.Item key="5">Edit Email&Name</Menu.Item>
                     <Menu.Item key="6">Change Password</Menu.Item>
                     <Menu.Item key="7">My Ticket</Menu.Item>
