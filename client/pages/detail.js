@@ -7,11 +7,11 @@ import {
     LinkOutlined, UserOutlined, LockOutlined,
 } from '@ant-design/icons';
 import "../node_modules/antd/dist/antd.css"
-import React from "react";
+import React, {useEffect} from "react";
 import { withRouter } from 'next/router';
 import Router from 'next/router';
 import { useRouter } from 'next/router'
-import cookie from 'react-cookies';
+import Header from "./components/header";
 import moment from 'moment';
 
 import Navybar from "./components/navybar";
@@ -60,7 +60,8 @@ const mapContainerStyle = {
 
 
 function Detail({ticket}){
-    
+    const router = useRouter()
+    const {id} = router.query
     const author = ticket.data.ticketAuthor.name;
     const ticket_title = ticket.data.title;
     const content = ticket.data.content;
@@ -75,11 +76,55 @@ function Detail({ticket}){
         googleMapsApiKey: process.env.google_api_key ,
         libraries,
     });
-    const rate = ticket.data.rateSum;
+    const [rate, setRate] = React.useState(ticket.data.rateSum);
+
+    async function handleUp() {
+        const url = "http://127.0.0.1:3000/api/ticket/vote?id=" + id;
+        const response = await fetch(url , {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                score: 1
+            })
+        });
+        const data = await response.json();
+        if (data.code == 403) {
+            alert(data.message);
+        }else if (data.code == 200) {
+            alert(data.message);
+            setRate(data.data.newRateSum)
+        } else if (data.code == 500) {
+            alert("Server Error!");
+        }
+    }
+
+    async function handleDown() {
+        const url = "http://127.0.0.1:3000/api/ticket/vote?id=" + id;
+        const response = await fetch(url , {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                score: -1
+            })
+        });
+        const data = await response.json();
+        if (data.code == 403) {
+            alert(data.message);
+        }else if (data.code == 200) {
+            alert(data.message);
+            setRate(data.data.newRateSum)
+        } else if (data.code == 500) {
+            alert("Server Error!");
+        }
+    }
+
     if (loadError) return "Error Loading Maps";
     if (!isLoaded) return "Loading Maps";
-    const router = useRouter()
-    const {id} = router.query
+    
     async function onFinish(values) {
         const URL = "http://127.0.0.1:3000/api/reply?ticket="+id;
         console.log(URL)
@@ -121,15 +166,7 @@ function Detail({ticket}){
 
     return(
         <div>
-            <Row className="homeHeader">
-                <Col><img className="img" src="../city.png"></img></Col>
-                <Col span={12}/>
-                <Col className="banner">
-                    <Button type="primary">Create a New Ticket</Button>
-                </Col>
-                <Col span={2}/>
-                <Col className="banner"> <Button>Log out</Button></Col>
-            </Row>
+            <Header/>
             <Divider />
             <br />
             <Row >
@@ -155,9 +192,9 @@ function Detail({ticket}){
                         <br />
                         <Row>
                             <Col span={4}>Rate: {rate}</Col>
-                            <Col><Button type="primary"> Upvote </Button></Col>
+                            <Col><Button type="primary" onClick={() => {handleUp()}}> Upvote </Button></Col>
                             <Col span={2}/>
-                            <Col><Button type="primary">Downvote</Button></Col>
+                            <Col><Button type="primary" onClick={() => {handleDown()}}>Downvote</Button></Col>
                         </Row>
                     </div>
                     <br></br>
