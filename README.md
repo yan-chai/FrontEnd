@@ -59,5 +59,5 @@ Each .js file in client/pages is mapped to a UI interface, for example, login.js
 
 
 ## 5. Demo
-
+Demo was uploaded to youTube as a video, here is the link https://www.youtube.com/watch?v=RTkjl8M0eAo
 
