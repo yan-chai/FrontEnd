@@ -24,12 +24,33 @@ Example: request new restaurant/gym/school, laws that need to be passed, facilit
 ## 4. Getting started
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-* First, cd to client folder, then run the development server:
+* First, cd to client folder:
 
 ```bash
-npm run dev
-# or
-yarn dev
+> cd client
+```
+
+* install dependencies
+
+```bash
+> npm install
+> yarn add
+```
+
+* Configure .env file
+
+create a .env.local file in ./cliet folder  
+
+add 'google_api_key = [GOOGLE API KEY]'  
+
+```bash
+> npm run dev
+```
+
+* start the development server:
+
+```bash
+> npm run dev
 ```
 
 Open [http://127.0.0.1:3000](http://127.0.0.1:3000) with your browser to see the result.
