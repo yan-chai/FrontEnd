@@ -1,15 +1,7 @@
-import {Row,Menu, Switch, Divider, Button, Cascader, Card, List, Col} from 'antd';
-import {
-    MailOutlined,
-    CalendarOutlined,
-    AppstoreOutlined,
-    SettingOutlined,
-    LinkOutlined,
-} from '@ant-design/icons';
+import {Row,Menu,Divider, Button, Card,Col} from 'antd';
 import "../node_modules/antd/dist/antd.css"
 import React from "react";
 import Router from 'next/router';
-import cookie from 'react-cookies';
 import Navybar from "./components/navybar";
 import Header from "./components/header";
 
@@ -42,9 +34,8 @@ const Home = ({data}) => {
             <Row >
             <Navybar/>
                 <Divider type="vertical" />
-                <Col class = 'home_content'> 
+                <Col class = 'home_content'>
                     <Divider />
-
                     <Divider  />
                     <Row>
                         <Col>

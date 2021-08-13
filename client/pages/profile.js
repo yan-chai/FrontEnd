@@ -1,10 +1,7 @@
 import {Row, Menu, Switch, Divider, Button, Cascader, Card, List, Col, Form, Input, Checkbox,Select} from 'antd';
 import {
-    MailOutlined,
-    CalendarOutlined,
-    AppstoreOutlined,
-    SettingOutlined,
-    LinkOutlined, UserOutlined, LockOutlined,
+     UserOutlined,
+     LockOutlined,
 } from '@ant-design/icons';
 import "../node_modules/antd/dist/antd.css"
 import React from "react";

@@ -45,8 +45,6 @@ function Register() {
             <img src='/tmp.PNG' className='intropic' />
             <div className='content'>
                 <div className='header'>Already have an Account? <Link href='/login'>Sign in</Link></div>
-              {/*<div className='auth'><Button size='large'>Sign up With Google</Button><Button size='large'>Sign up With Twitter</Button></div>
-                <Divider plain>Or</Divider>*/}
               <br></br>
               <br></br>
               <br></br>

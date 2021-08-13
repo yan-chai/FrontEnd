@@ -9,19 +9,7 @@ import Router from 'next/router';
 
 export default function Home() {
 
-  /*const clickLogin = e => {
-    Router.push('/login');
-  };
-  const clickReg = e => {
-    Router.push('/register');
-  };*/
-
-  //const [current, setClick] = useState("");
-
   function handleClick(e) {
-    //console.log('click ', e.key);
-    //setClick(e.key);
-
     Router.push('/'+e.key);
   };
 
@@ -51,14 +39,6 @@ export default function Home() {
           <h1 className="title">City Log</h1>
           <br></br>
           <h1 className="slogan">Let's Unite for Better City</h1>
-          {/*<h2 className="subtitle">Join us today!</h2>
-            <div className="intro">
-            <li className="item">intro 1</li>
-            <li className="item">intro 2</li>
-            <li className="item">intro 3</li>
-            </div>
-            */
-          }
           <br></br>
           <Row className="bar">
             <Button className="button" size="large" type="primary" onClick={()=>{Router.push('/register')}}>Join Now!</Button>

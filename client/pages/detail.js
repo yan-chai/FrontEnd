@@ -1,11 +1,4 @@
-import {Row, Menu, Switch, Divider, Button, Cascader, Card, List, Col, Form, Input, Select, Avatar, Skeleton,DatePicker,Space,Table,Comment,Tooltip} from 'antd';
-import {
-    MailOutlined,
-    CalendarOutlined,
-    AppstoreOutlined,
-    SettingOutlined,
-    LinkOutlined, UserOutlined, LockOutlined,
-} from '@ant-design/icons';
+import {Row, Divider, Button, List, Col, Form, Input, Comment,Tooltip} from 'antd';
 import "../node_modules/antd/dist/antd.css"
 import React, {useEffect} from "react";
 import { withRouter } from 'next/router';
@@ -124,7 +117,7 @@ function Detail({ticket}){
 
     if (loadError) return "Error Loading Maps";
     if (!isLoaded) return "Loading Maps";
-    
+
     async function onFinish(values) {
         const URL = "http://127.0.0.1:3000/api/reply?ticket="+id;
         console.log(URL)
